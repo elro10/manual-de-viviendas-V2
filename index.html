@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Base Cero | Manual de Uso y Mantenimiento</title>
+    <link rel="stylesheet" href="estilo.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <main class="container">
+        <header class="header-card">
+            <img
+                class="brand-logo"
+                src="https://res.cloudinary.com/dgfp1qcnq/image/upload/v1779226762/d9e025c9-61bd-4900-9868-58399972aa7e.png"
+                alt="Base Cero"
+            />
+            <h1>Generador de Manual de Uso y Mantenimiento</h1>
+            <p class="subtitle">
+                Documento técnico formal para entrega a cliente final.
+            </p>
+        </header>
+
+        <form id="reportForm">
+            <section class="form-section">
+                <h2>1. Datos generales de la vivienda</h2>
+                <div class="grid">
+                    <div class="field">
+                        <label for="cliente">Cliente</label>
+                        <input id="cliente" type="text" placeholder="Nombre y apellido o razón social" required />
+                    </div>
+                    <div class="field">
+                        <label for="direccion">Domicilio</label>
+                        <input id="direccion" type="text" placeholder="Calle, número, barrio" required />
+                    </div>
+                    <div class="field">
+                        <label for="localidad">Localidad</label>
+                        <input id="localidad" type="text" placeholder="Ciudad / Provincia" required />
+                    </div>
+                    <div class="field">
+                        <label for="anio">Año de construcción</label>
+                        <input id="anio" type="number" min="1900" max="2100" placeholder="Ej. 2024" />
+                    </div>
+                    <div class="field">
+                        <label for="superficie">Superficie (m²)</label>
+                        <input id="superficie" type="number" min="1" placeholder="Ej. 120" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>2. Instalaciones y sistemas</h2>
+
+                <div class="block">
+                    <h3>Gas y climatización</h3>
+                    <div class="checks">
+                        <label><input type="checkbox" name="gas" value="Gas natural" /> Gas natural</label>
+                        <label><input type="checkbox" name="gas" value="Gas envasado" /> Gas envasado</label>
+                        <label><input type="checkbox" name="clim" value="Calefacción" /> Calefacción</label>
+                        <label><input type="checkbox" name="clim" value="Aire acondicionado" /> Aire acondicionado</label>
+                        <label><input type="checkbox" name="climGasTipo" value="Tiro Balanceado" /> Estufa tiro balanceado</label>
+                        <label><input type="checkbox" name="climGasTipo" value="Infrarrojo" /> Estufa infrarroja</label>
+                    </div>
+                </div>
+
+                <div class="block">
+                    <h3>Agua caliente sanitaria y bombeo</h3>
+                    <div class="checks">
+                        <label><input type="checkbox" id="termotanque" /> Termotanque</label>
+                        <label><input type="checkbox" id="calefon" /> Calefón</label>
+                        <label><input type="checkbox" id="calderaIndividual" /> Caldera individual</label>
+                        <label><input type="checkbox" id="tanqueElevado" /> Tanque elevado</label>
+                        <label><input type="checkbox" id="cisterna" /> Cisterna</label>
+                        <label><input type="checkbox" id="bombaPresurizadora" /> Bomba presurizadora</label>
+                    </div>
+                </div>
+
+                <div class="block">
+                    <h3>Seguridad de instalaciones</h3>
+                    <div class="checks">
+                        <label><input type="checkbox" id="disyuntorDiferencial" /> Disyuntor diferencial</label>
+                        <label><input type="checkbox" id="llaveTermomagnetica" /> Llave termomagnética</label>
+                        <label><input type="checkbox" id="detectorMonoxido" /> Detector de monóxido</label>
+                        <label><input type="checkbox" id="matafuego" /> Matafuego</label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>3. Ambientes de la vivienda</h2>
+                <div class="checks checks-grid">
+                    <label><input type="checkbox" name="amb" value="Dormitorios" /> Dormitorios</label>
+                    <label><input type="checkbox" name="amb" value="Cocina" /> Cocina</label>
+                    <label><input type="checkbox" name="amb" value="Baño" /> Baño</label>
+                    <label><input type="checkbox" name="amb" value="Living" /> Living</label>
+                    <label><input type="checkbox" name="amb" value="Comedor" /> Comedor</label>
+                    <label><input type="checkbox" name="amb" value="Lavadero" /> Lavadero</label>
+                    <label><input type="checkbox" name="amb" value="Quincho" /> Quincho</label>
+                    <label><input type="checkbox" name="amb" value="Cochera" /> Cochera</label>
+                    <label><input type="checkbox" name="amb" value="Vestidor" /> Vestidor</label>
+                    <label><input type="checkbox" name="amb" value="Estudio" /> Estudio</label>
+                    <label><input type="checkbox" name="amb" value="Terraza" /> Terraza</label>
+                    <label><input type="checkbox" name="amb" value="Patio" /> Patio</label>
+                    <label><input type="checkbox" name="amb" value="Circulaciones" /> Circulaciones</label>
+                    <label><input type="checkbox" name="amb" value="Depósito" /> Depósito</label>
+                    <label><input type="checkbox" name="amb" value="Sala de máquinas" /> Sala de máquinas</label>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>4. Observaciones técnicas</h2>
+                <div class="field">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea
+                        id="observaciones"
+                        rows="5"
+                        placeholder="Ingrese observaciones técnicas, patologías detectadas o aclaraciones de uso."
+                    ></textarea>
+                </div>
+            </section>
+
+            <div class="actions">
+                <button type="button" id="generateBtn" class="btn btn-primary">Generar PDF profesional</button>
+                <button type="button" id="newManualBtn" class="btn btn-secondary">Nuevo manual</button>
+            </div>
+            <p id="manualStatus" class="status" aria-live="polite"></p>
+        </form>
+    </main>
+
+    <div id="pdf-container" style="display:none;"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
