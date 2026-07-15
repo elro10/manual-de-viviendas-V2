@@ -1,134 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Base Cero | Manual de Uso y Mantenimiento</title>
-    <link rel="stylesheet" href="estilo.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generador de manuales de uso y mantenimiento para viviendas.">
+  <title>Base Cero | Manual de Uso y Mantenimiento</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 </head>
 <body>
-    <main class="container">
-        <header class="header-card">
-            <img
-                class="brand-logo"
-                src="https://res.cloudinary.com/dgfp1qcnq/image/upload/v1779226762/d9e025c9-61bd-4900-9868-58399972aa7e.png"
-                alt="Base Cero"
-            />
-            <h1>Generador de Manual de Uso y Mantenimiento</h1>
-            <p class="subtitle">
-                Documento técnico formal para entrega a cliente final.
-            </p>
-        </header>
+  <main class="container">
+    <header class="hero">
+      <img class="brand-logo" src="https://res.cloudinary.com/dgfp1qcnq/image/upload/v1779226762/d9e025c9-61bd-4900-9868-58399972aa7e.png" alt="Base Cero">
+      <div>
+        <p class="eyebrow">BASE CERO</p>
+        <h1>Manual de Uso y Mantenimiento</h1>
+        <p class="subtitle">Completá las características de la vivienda para generar una guía personalizada.</p>
+      </div>
+    </header>
 
-        <form id="reportForm">
-            <section class="form-section">
-                <h2>1. Datos generales de la vivienda</h2>
-                <div class="grid">
-                    <div class="field">
-                        <label for="cliente">Cliente</label>
-                        <input id="cliente" type="text" placeholder="Nombre y apellido o razón social" required />
-                    </div>
-                    <div class="field">
-                        <label for="direccion">Domicilio</label>
-                        <input id="direccion" type="text" placeholder="Calle, número, barrio" required />
-                    </div>
-                    <div class="field">
-                        <label for="localidad">Localidad</label>
-                        <input id="localidad" type="text" placeholder="Ciudad / Provincia" required />
-                    </div>
-                    <div class="field">
-                        <label for="anio">Año de construcción</label>
-                        <input id="anio" type="number" min="1900" max="2100" placeholder="Ej. 2024" />
-                    </div>
-                    <div class="field">
-                        <label for="superficie">Superficie (m²)</label>
-                        <input id="superficie" type="number" min="1" placeholder="Ej. 120" />
-                    </div>
-                </div>
-            </section>
+    <form id="reportForm" novalidate>
+      <section class="form-section" aria-labelledby="datos-title">
+        <div class="section-heading"><span>01</span><div><h2 id="datos-title">Datos generales</h2><p>Información de referencia de la vivienda.</p></div></div>
+        <div class="grid grid--three">
+          <div class="field"><label for="cliente">Cliente <span aria-hidden="true">*</span></label><input id="cliente" name="cliente" type="text" autocomplete="name" placeholder="Nombre y apellido o razón social" required></div>
+          <div class="field"><label for="direccion">Domicilio <span aria-hidden="true">*</span></label><input id="direccion" name="direccion" type="text" autocomplete="street-address" placeholder="Calle, número, barrio" required></div>
+          <div class="field"><label for="localidad">Localidad <span aria-hidden="true">*</span></label><input id="localidad" name="localidad" type="text" autocomplete="address-level2" placeholder="Ciudad / Provincia" required></div>
+          <div class="field"><label for="anio">Año de construcción</label><input id="anio" name="anio" type="number" min="1900" max="2100" placeholder="Ej. 2024"></div>
+          <div class="field"><label for="superficie">Superficie (m²)</label><input id="superficie" name="superficie" type="number" min="1" step="1" placeholder="Ej. 120"></div>
+        </div>
+      </section>
 
-            <section class="form-section">
-                <h2>2. Instalaciones y sistemas</h2>
+      <section class="form-section" aria-labelledby="construccion-title">
+        <div class="section-heading"><span>02</span><div><h2 id="construccion-title">Características constructivas y terminaciones</h2><p>Seleccioná las opciones que mejor describen a la vivienda.</p></div></div>
+        <div class="grid grid--three">
+          <div class="field"><label for="tipoVivienda">Tipo de vivienda</label><select id="tipoVivienda" name="tipoVivienda"><option value="">Sin completar</option><option>No aplica</option><option>Casa en planta baja</option><option>Casa en dos o más plantas</option><option>Departamento</option><option>Dúplex</option><option>PH</option><option>Loft</option></select></div>
+          <div class="field"><label for="entorno">Entorno</label><select id="entorno" name="entorno"><option value="">Sin completar</option><option>No aplica</option><option>Urbano consolidado</option><option>Suburbano</option><option>Rural</option></select></div>
+          <div class="field"><label for="suelo">Estructura del suelo</label><select id="suelo" name="suelo"><option value="">Sin completar</option><option>No aplica</option><option>Compactación controlada</option><option>Rellenos estructurales</option><option>Pendientes formadas para escurrimiento</option><option>Mixto</option></select></div>
+          <div class="field"><label for="fundacion">Tipo de fundación</label><select id="fundacion" name="fundacion"><option value="">Sin completar</option><option>No aplica</option><option>Platea de hormigón armado</option><option>Cimientos corridos</option><option>Pilotines</option></select></div>
+          <div class="field"><label for="sistemaConstructivo">Sistema constructivo</label><select id="sistemaConstructivo" name="sistemaConstructivo"><option value="">Sin completar</option><option>No aplica</option><option>Mampostería tradicional</option><option>Estructura de hormigón armado</option><option>Steel framing</option><option>Wood framing</option><option>Sistema mixto</option><option>Paneles prefabricados</option></select></div>
+          <div class="field"><label for="cubierta">Tipo de cubierta</label><select id="cubierta" name="cubierta"><option value="">Sin completar</option><option>No aplica</option><option>Losa maciza de hormigón</option><option>Losa alivianada / viguetas</option><option>Cubierta de chapa</option><option>Teja cerámica / hormigón</option><option>Paneles tipo sándwich</option></select></div>
+          <div class="field"><label for="murosInteriores">Muros interiores</label><select id="murosInteriores" name="murosInteriores"><option value="">Sin completar</option><option>No aplica</option><option>Ladrillo cerámico / común</option><option>Placas de yeso</option><option>Bloque de cemento</option><option>Mixto</option></select></div>
+          <div class="field"><label for="revestimientosExt">Muros exteriores (revestimientos)</label><select id="revestimientosExt" name="revestimientosExt"><option value="">Sin completar</option><option>No aplica</option><option>Revoque tradicional</option><option>Revoque plástico / texturado</option><option>Siding / revestimiento liviano</option><option>Ladrillo visto</option></select></div>
+          <div class="field"><label for="revestimientosInt">Revestimientos interiores</label><select id="revestimientosInt" name="revestimientosInt"><option value="">Sin completar</option><option>No aplica</option><option>Pintura látex</option><option>Pintura sintética</option><option>Placas de yeso / especiales</option></select></div>
+          <div class="field"><label for="carpinterias">Aberturas exteriores</label><select id="carpinterias" name="carpinterias"><option value="">Sin completar</option><option>No aplica</option><option>Aluminio</option><option>PVC</option><option>Madera</option><option>Chapa</option><option>Mixto</option></select></div>
+          <div class="field"><label for="pisos">Tipo de pisos predominante</label><select id="pisos" name="pisos"><option value="">Sin completar</option><option>No aplica</option><option>Cerámico / porcelanato</option><option>Madera / flotante</option><option>Cemento alisado</option><option>Mosaicos / graníticos</option><option>Vinílico / PVC</option></select></div>
+        </div>
+      </section>
 
-                <div class="block">
-                    <h3>Gas y climatización</h3>
-                    <div class="checks">
-                        <label><input type="checkbox" name="gas" value="Gas natural" /> Gas natural</label>
-                        <label><input type="checkbox" name="gas" value="Gas envasado" /> Gas envasado</label>
-                        <label><input type="checkbox" name="clim" value="Calefacción" /> Calefacción</label>
-                        <label><input type="checkbox" name="clim" value="Aire acondicionado" /> Aire acondicionado</label>
-                        <label><input type="checkbox" name="climGasTipo" value="Tiro Balanceado" /> Estufa tiro balanceado</label>
-                        <label><input type="checkbox" name="climGasTipo" value="Infrarrojo" /> Estufa infrarroja</label>
-                    </div>
-                </div>
+      <section class="form-section" aria-labelledby="instalaciones-title">
+        <div class="section-heading"><span>03</span><div><h2 id="instalaciones-title">Instalaciones y sistemas</h2><p>Marcá todos los equipos y sistemas presentes.</p></div></div>
+        <div class="systems-grid">
+          <fieldset class="choice-group"><legend>Gas y climatización</legend><label><input type="checkbox" name="gas" value="Gas natural"> Gas natural</label><label><input type="checkbox" name="gas" value="Gas envasado"> Gas envasado</label><label><input type="checkbox" name="clim" value="Calefacción"> Calefacción</label><label><input type="checkbox" name="clim" value="Aire acondicionado"> Aire acondicionado</label><label><input type="checkbox" name="climGasTipo" value="Tiro balanceado"> Estufa tiro balanceado</label><label><input type="checkbox" name="climGasTipo" value="Infrarrojo"> Estufa infrarroja</label></fieldset>
+          <fieldset class="choice-group"><legend>Agua caliente, tanques y bombeo</legend><label><input type="checkbox" name="equipos" value="Termotanque"> Termotanque</label><label><input type="checkbox" name="equipos" value="Calefón"> Calefón</label><label><input type="checkbox" name="equipos" value="Caldera individual"> Caldera individual</label><label><input type="checkbox" name="equipos" value="Tanque elevado"> Tanque elevado</label><label><input type="checkbox" name="equipos" value="Cisterna"> Cisterna</label><label><input type="checkbox" name="equipos" value="Bomba presurizadora"> Bomba presurizadora</label></fieldset>
+          <fieldset class="choice-group"><legend>Seguridad de instalaciones</legend><label><input type="checkbox" name="seguridad" value="Disyuntor diferencial"> Disyuntor diferencial</label><label><input type="checkbox" name="seguridad" value="Llave termomagnética"> Llave termomagnética</label><label><input type="checkbox" name="seguridad" value="Detector de monóxido"> Detector de monóxido</label><label><input type="checkbox" name="seguridad" value="Matafuego"> Matafuego</label></fieldset>
+          <fieldset class="choice-group"><legend>Sistemas comunes del edificio</legend><label><input type="checkbox" name="sistemasComunes" value="Alarma de incendio"> Alarma de incendio</label><label><input type="checkbox" name="sistemasComunes" value="Presurización de caja de escalera"> Presurización de caja de escalera</label><label><input type="checkbox" name="sistemasComunes" value="Sala de basura y ducto"> Sala de basura y ducto</label><label><input type="checkbox" name="sistemasComunes" value="Aguas lluvias - recolección"> Aguas lluvias - recolección</label><label><input type="checkbox" name="sistemasComunes" value="Aguas lluvias - drenajes"> Aguas lluvias - drenajes</label><label><input type="checkbox" name="sistemasComunes" value="Aguas lluvias - canaletas"> Aguas lluvias - canaletas</label><label><input type="checkbox" name="sistemasComunes" value="Lavandería comunitaria"> Lavandería comunitaria</label><label><input type="checkbox" name="sistemasComunes" value="Jardines - área verde"> Jardines - área verde</label><label><input type="checkbox" name="sistemasComunes" value="Jardines - riego automático"> Jardines - riego automático</label></fieldset>
+        </div>
+        <div class="field field--compact"><label for="instalacionPluvial">Instalación pluvial</label><select id="instalacionPluvial" name="instalacionPluvial"><option value="">Sin completar</option><option>No aplica</option><option>Canaletas + bajadas pluviales</option><option>Desagües lineales</option><option>Rejillas y cámaras</option><option>Mixto</option></select></div>
+      </section>
 
-                <div class="block">
-                    <h3>Agua caliente sanitaria y bombeo</h3>
-                    <div class="checks">
-                        <label><input type="checkbox" id="termotanque" /> Termotanque</label>
-                        <label><input type="checkbox" id="calefon" /> Calefón</label>
-                        <label><input type="checkbox" id="calderaIndividual" /> Caldera individual</label>
-                        <label><input type="checkbox" id="tanqueElevado" /> Tanque elevado</label>
-                        <label><input type="checkbox" id="cisterna" /> Cisterna</label>
-                        <label><input type="checkbox" id="bombaPresurizadora" /> Bomba presurizadora</label>
-                    </div>
-                </div>
+      <section class="form-section" aria-labelledby="servicios-title">
+        <div class="section-heading"><span>04</span><div><h2 id="servicios-title">Servicios, terreno y exterior</h2><p>Completá únicamente los sistemas presentes en la vivienda o el lote.</p></div></div>
+        <div class="grid grid--three">
+          <div class="field"><label for="abastecimiento">Abastecimiento de agua</label><select id="abastecimiento" name="abastecimiento"><option value="">Sin completar</option><option>Red pública</option><option>Cooperativa de agua</option><option>Perforación / pozo propio</option><option>Cisterna / aljibe</option><option>Captación de agua de lluvia</option></select></div>
+          <div class="field"><label for="saneamiento">Saneamiento</label><select id="saneamiento" name="saneamiento"><option value="">Sin completar</option><option>Red cloacal</option><option>Cámara séptica + pozo absorbente</option><option>Biodigestor</option><option>Planta compacta de tratamiento</option><option>Pozo ciego</option></select></div>
+        </div>
+        <div class="systems-grid services-grid">
+          <fieldset class="choice-group"><legend>Tratamiento de agua</legend><label><input type="checkbox" name="tratamientoAgua" value="Filtro de sedimentos"> Filtro de sedimentos</label><label><input type="checkbox" name="tratamientoAgua" value="Ablandador de agua"> Ablandador de agua</label><label><input type="checkbox" name="tratamientoAgua" value="Dosificador de cloro"> Dosificador de cloro</label><label><input type="checkbox" name="tratamientoAgua" value="Ósmosis inversa"> Ósmosis inversa</label></fieldset>
+          <fieldset class="choice-group"><legend>Calefacción alternativa</legend><label><input type="checkbox" name="calefaccionAlternativa" value="Salamandra a leña"> Salamandra a leña</label><label><input type="checkbox" name="calefaccionAlternativa" value="Hogar a leña"> Hogar a leña</label><label><input type="checkbox" name="calefaccionAlternativa" value="Estufa a pellets"> Estufa a pellets</label><label><input type="checkbox" name="calefaccionAlternativa" value="Chimenea"> Chimenea</label></fieldset>
+          <fieldset class="choice-group"><legend>Energía autónoma</legend><label><input type="checkbox" name="energiaAutonoma" value="Paneles fotovoltaicos"> Paneles fotovoltaicos</label><label><input type="checkbox" name="energiaAutonoma" value="Inversor y baterías"> Inversor y baterías</label><label><input type="checkbox" name="energiaAutonoma" value="Grupo electrógeno"> Grupo electrógeno</label></fieldset>
+          <fieldset class="choice-group"><legend>Exterior</legend><label><input type="checkbox" name="exterior" value="Muro de contención"> Muro de contención</label><label><input type="checkbox" name="exterior" value="Cerco perimetral"> Cerco perimetral</label><label><input type="checkbox" name="exterior" value="Portón"> Portón</label><label><input type="checkbox" name="exterior" value="Galería / pérgola"> Galería / pérgola</label><label><input type="checkbox" name="exterior" value="Pileta"> Pileta</label></fieldset>
+          <fieldset class="choice-group"><legend>Agua exterior</legend><label><input type="checkbox" name="aguaExterior" value="Bomba de pozo"> Bomba de pozo</label><label><input type="checkbox" name="aguaExterior" value="Riego automático"> Riego automático</label><label><input type="checkbox" name="aguaExterior" value="Riego manual"> Riego manual</label><label><input type="checkbox" name="aguaExterior" value="Reservorio de agua"> Reservorio de agua</label></fieldset>
+        </div>
+      </section>
 
-                <div class="block">
-                    <h3>Seguridad de instalaciones</h3>
-                    <div class="checks">
-                        <label><input type="checkbox" id="disyuntorDiferencial" /> Disyuntor diferencial</label>
-                        <label><input type="checkbox" id="llaveTermomagnetica" /> Llave termomagnética</label>
-                        <label><input type="checkbox" id="detectorMonoxido" /> Detector de monóxido</label>
-                        <label><input type="checkbox" id="matafuego" /> Matafuego</label>
-                    </div>
-                </div>
-            </section>
+      <section class="form-section" aria-labelledby="ambientes-title">
+        <div class="section-heading"><span>05</span><div><h2 id="ambientes-title">Ambientes de la vivienda</h2><p>Se incluirán cuidados específicos para cada ambiente seleccionado.</p></div></div>
+        <fieldset class="choice-group choices-grid"><legend class="sr-only">Ambientes</legend><label><input type="checkbox" name="amb" value="Dormitorios"> Dormitorios</label><label><input type="checkbox" name="amb" value="Cocina"> Cocina</label><label><input type="checkbox" name="amb" value="Baño"> Baño</label><label><input type="checkbox" name="amb" value="Living"> Living</label><label><input type="checkbox" name="amb" value="Comedor"> Comedor</label><label><input type="checkbox" name="amb" value="Lavadero"> Lavadero</label><label><input type="checkbox" name="amb" value="Quincho"> Quincho</label><label><input type="checkbox" name="amb" value="Cochera"> Cochera</label><label><input type="checkbox" name="amb" value="Vestidor"> Vestidor</label><label><input type="checkbox" name="amb" value="Estudio"> Estudio</label><label><input type="checkbox" name="amb" value="Terraza"> Terraza</label><label><input type="checkbox" name="amb" value="Patio"> Patio</label><label><input type="checkbox" name="amb" value="Circulaciones"> Circulaciones</label><label><input type="checkbox" name="amb" value="Depósito"> Depósito</label><label><input type="checkbox" name="amb" value="Sala de máquinas"> Sala de máquinas</label></fieldset>
+      </section>
 
-            <section class="form-section">
-                <h2>3. Ambientes de la vivienda</h2>
-                <div class="checks checks-grid">
-                    <label><input type="checkbox" name="amb" value="Dormitorios" /> Dormitorios</label>
-                    <label><input type="checkbox" name="amb" value="Cocina" /> Cocina</label>
-                    <label><input type="checkbox" name="amb" value="Baño" /> Baño</label>
-                    <label><input type="checkbox" name="amb" value="Living" /> Living</label>
-                    <label><input type="checkbox" name="amb" value="Comedor" /> Comedor</label>
-                    <label><input type="checkbox" name="amb" value="Lavadero" /> Lavadero</label>
-                    <label><input type="checkbox" name="amb" value="Quincho" /> Quincho</label>
-                    <label><input type="checkbox" name="amb" value="Cochera" /> Cochera</label>
-                    <label><input type="checkbox" name="amb" value="Vestidor" /> Vestidor</label>
-                    <label><input type="checkbox" name="amb" value="Estudio" /> Estudio</label>
-                    <label><input type="checkbox" name="amb" value="Terraza" /> Terraza</label>
-                    <label><input type="checkbox" name="amb" value="Patio" /> Patio</label>
-                    <label><input type="checkbox" name="amb" value="Circulaciones" /> Circulaciones</label>
-                    <label><input type="checkbox" name="amb" value="Depósito" /> Depósito</label>
-                    <label><input type="checkbox" name="amb" value="Sala de máquinas" /> Sala de máquinas</label>
-                </div>
-            </section>
+      <section class="form-section" aria-labelledby="observaciones-title">
+        <div class="section-heading"><span>06</span><div><h2 id="observaciones-title">Observaciones técnicas</h2><p>Información adicional que se incorporará al final del manual.</p></div></div>
+        <div class="field"><label for="observaciones">Observaciones</label><textarea id="observaciones" name="observaciones" rows="5" placeholder="Ingrese observaciones técnicas, patologías detectadas o aclaraciones de uso."></textarea></div>
+      </section>
 
-            <section class="form-section">
-                <h2>4. Observaciones técnicas</h2>
-                <div class="field">
-                    <label for="observaciones">Observaciones</label>
-                    <textarea
-                        id="observaciones"
-                        rows="5"
-                        placeholder="Ingrese observaciones técnicas, patologías detectadas o aclaraciones de uso."
-                    ></textarea>
-                </div>
-            </section>
-
-            <div class="actions">
-                <button type="button" id="generateBtn" class="btn btn-primary">Generar PDF profesional</button>
-                <button type="button" id="newManualBtn" class="btn btn-secondary">Nuevo manual</button>
-            </div>
-            <p id="manualStatus" class="status" aria-live="polite"></p>
-        </form>
-    </main>
-
-    <div id="pdf-container" style="display:none;"></div>
-
-    <script src="script.js"></script>
+      <div class="actions">
+        <button type="submit" class="btn btn-primary">Generar PDF</button>
+        <button type="button" id="newManualBtn" class="btn btn-secondary">Nuevo manual</button>
+      </div>
+      <p id="manualStatus" class="status" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
