@@ -10,7 +10,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 </head>
 <body>
-  <main class="container">
+  <section id="loginScreen" class="login-screen" aria-labelledby="loginTitle">
+    <form id="loginForm" class="login-card">
+      <img class="login-logo" src="https://res.cloudinary.com/dgfp1qcnq/image/upload/v1779226762/d9e025c9-61bd-4900-9868-58399972aa7e.png" alt="Base Cero">
+      <p class="eyebrow">ACCESO LOCAL</p>
+      <h1 id="loginTitle">Manual de viviendas</h1>
+      <p>Ingresá tus credenciales para acceder al generador.</p>
+      <div class="field"><label for="loginUser">Usuario</label><input id="loginUser" type="text" autocomplete="username" required></div>
+      <div class="field"><label for="loginPassword">Contraseña</label><input id="loginPassword" type="password" autocomplete="current-password" required></div>
+      <button type="submit" class="btn btn-primary">Ingresar</button>
+      <p id="loginStatus" class="status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <main id="manualApp" class="container" hidden>
     <header class="hero">
       <img class="brand-logo" src="https://res.cloudinary.com/dgfp1qcnq/image/upload/v1779226762/d9e025c9-61bd-4900-9868-58399972aa7e.png" alt="Base Cero">
       <div>

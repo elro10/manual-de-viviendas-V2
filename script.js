@@ -1,5 +1,8 @@
 const STORAGE_KEY = 'base-cero-manual-form-v1';
+const AUTH_KEY = 'base-cero-local-auth';
 const BRAND = 'BASE CERO';
+const LOCAL_USER = 'Vera';
+const LOCAL_PASSWORD = 'culo';
 
 const makeRule = (title, use, maintenance = {}) => ({ title, use, maintenance });
 const task = (text, frequency = 'Anual', responsible = 'Usuario / profesional según corresponda') => ({ text, frequency, responsible });
@@ -200,6 +203,28 @@ const AMBIENTES = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem(AUTH_KEY) === 'true') initializeManual();
+  else initializeLogin();
+});
+
+function initializeLogin() {
+  const loginForm = document.getElementById('loginForm');
+  const status = document.getElementById('loginStatus');
+  loginForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const user = document.getElementById('loginUser').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    if (user !== LOCAL_USER || password !== LOCAL_PASSWORD) { setStatus(status, 'Usuario o contraseña incorrectos.', true); return; }
+    sessionStorage.setItem(AUTH_KEY, 'true');
+    document.getElementById('loginScreen').hidden = true;
+    document.getElementById('manualApp').hidden = false;
+    initializeManual();
+  });
+}
+
+function initializeManual() {
+  document.getElementById('loginScreen').hidden = true;
+  document.getElementById('manualApp').hidden = false;
   const form = document.getElementById('reportForm');
   const status = document.getElementById('manualStatus');
   restoreForm(form);
@@ -216,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!window.confirm('¿Querés borrar los datos del formulario y comenzar un nuevo manual?')) return;
     form.reset(); localStorage.removeItem(STORAGE_KEY); setStatus(status, 'Formulario reiniciado.');
   });
-});
+}
 
 function collectFormData(form) {
   const data = Object.fromEntries(new FormData(form).entries());
